@@ -1,16 +1,15 @@
 import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
 import SocialNetworkApp from '../components/SocialNetworkApp'
-import {push, pop} from '../actions/navigation'
+import * as navigationActionCreators from '../actions/navigation'
 function mapStateToProps(state) {
     return {
         navigation: state.navReducer
     }
 }
-export default connect(
-    mapStateToProps, {
-        pushRoute: (route) => push(route),
-        popRoute: () => pop()
-    }
-)(SocialNetworkApp);
 
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(Object.assign({}, navigationActionCreators), dispatch);
+}
 
+export default connect(mapStateToProps, mapDispatchToProps)(SocialNetworkApp)
