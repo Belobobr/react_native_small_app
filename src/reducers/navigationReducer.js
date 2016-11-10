@@ -9,8 +9,8 @@ const initialState = {
     key: 'root',
     routes: [
         {
-            key: 'home',
-            title: 'Welcome Home'
+            key: 'login',
+            title: 'Login'
         }
     ]
 };
@@ -18,6 +18,7 @@ const initialState = {
 function navigationState(state = initialState, action) {
     switch (action.type) {
         case PUSH_ROUTE:
+
             console.log('state: ', state);
             console.log('action: ', action);
             if (state.routes[state.index].key === (action.route && action.route.key)) {

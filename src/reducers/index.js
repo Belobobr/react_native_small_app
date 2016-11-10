@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
-import navReducer from './navReducer'
+import navReducer from './navigationReducer'
 
 const rootReducer = combineReducers({
     navReducer

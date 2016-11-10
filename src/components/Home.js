@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 import {
     View,
     Text,
     StyleSheet
-} from 'react-native'
-import Button from './Button'
+} from 'react-native';
+import Button from './Button';
 
 const route = {
     type: 'push',
@@ -14,10 +14,10 @@ const route = {
     }
 };
 
-const Home = ({_handleNavigate}) => (
+const Home = ({handleNavigate}) => (
     <View style={styles.container}>
         <Text style={styles.title}>Home</Text>
-        <Button onPress={() => _handleNavigate(route)} label='Go To About'/>
+        <Button onPress={() => handleNavigate(route)} label='Go To About'/>
     </View>
 );
 

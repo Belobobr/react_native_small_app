@@ -1,6 +1,8 @@
-import React, {Component} from 'react'
-import Home from './Home'
-import About from './About'
+import React, {Component} from 'react';
+import Home from './Home';
+import About from './About';
+import LoginScreen from './LoginScreen';
+import MainScreen from './mainScreen/index';
 
 import {
     BackAndroid,
@@ -14,29 +16,33 @@ const {
 class NavRoot extends Component {
     constructor(props) {
         super(props);
-        this._renderScene = this._renderScene.bind(this);
-        this._handleBackAction = this._handleBackAction.bind(this)
+        this.renderScene = this.renderScene.bind(this);
+        this.handleBackAction = this.handleBackAction.bind(this)
     }
 
     componentDidMount() {
-        BackAndroid.addEventListener('hardwareBackPress', this._handleBackAction)
+        BackAndroid.addEventListener('hardwareBackPress', this.handleBackAction)
     }
 
     componentWillUnmount() {
-        BackAndroid.removeEventListener('hardwareBackPress', this._handleBackAction)
+        BackAndroid.removeEventListener('hardwareBackPress', this.handleBackAction)
     }
 
-    _renderScene(props) {
-        const {route} = props.scene;
-        if (route.key === 'home') {
-            return <Home _handleNavigate={this._handleNavigate.bind(this)}/>
-        }
-        if (route.key === 'about') {
-            return <About _goBack={this._handleBackAction.bind(this)}/>
+    renderScene(navigationProps) {
+        const {route} = navigationProps.scene;
+        switch (route.key) {
+            case 'login':
+                return <LoginScreen {...this.props}/>;
+            case 'main':
+                return <MainScreen handleNavigate={this.handleNavigate.bind(this)}/>;
+            case 'home':
+                return <Home handleNavigate={this.handleNavigate.bind(this)}/>;
+            case 'about':
+                return <About goBack={this.handleBackAction.bind(this)}/>;
         }
     }
 
-    _handleBackAction() {
+    handleBackAction() {
         if (this.props.navigation.index === 0) {
             return false
         }
@@ -44,14 +50,14 @@ class NavRoot extends Component {
         return true
     }
 
-    _handleNavigate(action) {
+    handleNavigate(action) {
         switch (action && action.type) {
             case 'push':
                 this.props.pushRoute(action.route);
                 return true;
             case 'back':
             case 'pop':
-                return this._handleBackAction();
+                return this.handleBackAction();
             default:
                 return false
         }
@@ -61,8 +67,8 @@ class NavRoot extends Component {
         return (
             <NavigationCardStack
                 navigationState={this.props.navigation}
-                onNavigate={this._handleNavigate.bind(this)}
-                renderScene={this._renderScene}/>
+                onNavigate={this.handleNavigate.bind(this)}
+                renderScene={this.renderScene.bind(this)}/>
         )
     }
 }

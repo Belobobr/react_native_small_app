@@ -1,15 +1,15 @@
-import React from 'react'
+import React from 'react';
 import {
     View,
     Text,
     StyleSheet
 } from 'react-native'
-import Button from './Button'
+import Button from './Button';
 
-const About = ({_goBack}) => (
+const About = ({goBack}) => (
     <View style={styles.container}>
         <Text style={styles.title}>About</Text>
-        <Button onPress={_goBack} label='Go Back'/>
+        <Button onPress={goBack} label='Go Back'/>
     </View>
 );
 
