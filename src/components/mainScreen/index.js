@@ -36,7 +36,7 @@ export default class MainScreen extends Component {
                 tabBarActiveTextColor={WHITE}
                 tabBarInactiveTextColor={WHITE}
             >
-                <ProfileTab tabLabel='Profile'>My</ProfileTab>
+                <ProfileTab {...this.props} tabLabel='Profile'>My</ProfileTab>
                 <ItemsTab tabLabel='Items'>favorite</ItemsTab>
             </ScrollableTabView>
         </View>

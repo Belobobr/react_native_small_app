@@ -21,8 +21,7 @@ const mainRoute = {
 export default class LoginScreen extends Component {
 
     componentDidMount() {
-        // this.props.pushRoute(mainRoute)
-        // this.props.authorize(null);
+        // this.props.authorize(null, this.props.handleNavigate);
     }
 
     render() {
@@ -35,21 +34,20 @@ export default class LoginScreen extends Component {
                 onLoginFinished={
                     (error, result) => {
                         if (error) {
-                            alert("login has error: " + result.error);
+                            console.error("login has error: " + result.error);
                         } else if (result.isCancelled) {
-                            alert("login is cancelled.");
+                            console.log("login is cancelled.");
                         } else {
                             AccessToken.getCurrentAccessToken().then(
                                 (data) => {
-                                    {/*this.props.authorize(data.accessToken);*/}
-                                    this.props.pushRoute(mainRoute);
+                                    this.props.authorize(data.accessToken, this.props.handleNavigate);
                                     alert(data.accessToken.toString())
                                 }
                             )
                         }
                     }
                 }
-                onLogoutFinished={() => alert("logout.")}/>
+                onLogoutFinished={() => alert("unAuthorize.")}/>
         </View>
     }
 }

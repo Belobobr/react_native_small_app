@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 const FBSDK = require('react-native-fbsdk');
 const {
+    LoginButton,
     GraphRequest,
     GraphRequestManager,
 } = FBSDK;
@@ -28,7 +29,6 @@ export default class ProfileTab extends Component {
         if (error) {
             console.error('Error fetching data: ' + error.toString());
         } else {
-            debugger;
             alert('Success fetching data: ' + result.toString());
         }
     }
@@ -36,6 +36,11 @@ export default class ProfileTab extends Component {
     render() {
         return <View style={styles.container}>
             <Text>ProfileTab</Text>
+            <LoginButton
+                publishPermissions={["publish_actions"]}
+                onLogoutFinished={() => {
+                    this.props.unAuthorize(this.props.handleNavigate);
+                }}/>
         </View>
     }
 }

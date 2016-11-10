@@ -1,4 +1,4 @@
-import {POP_ROUTE, PUSH_ROUTE} from './../constants/actionTypes'
+import {POP_ROUTE, PUSH_ROUTE, RESET_ROUTES} from './../constants/actionTypes'
 
 export function pushRoute(route) {
     return {
@@ -10,5 +10,13 @@ export function pushRoute(route) {
 export function popRoute() {
     return {
         type: POP_ROUTE
+    }
+}
+
+export function resetRoutes(routes, index) {
+    return {
+        type: RESET_ROUTES,
+        routes,
+        index,
     }
 }

@@ -1,4 +1,4 @@
-import {AUTHORIZED} from './../constants/actionTypes'
+import {LOGIN, LOGOUT} from './../constants/actionTypes'
 
 const initialState = {
     accessToken: null,
@@ -6,8 +6,10 @@ const initialState = {
 
 function sessionState(state = initialState, action) {
     switch (action.type) {
-        case AUTHORIZED:
+        case LOGIN:
             return Object.assign({}, state, {accessToken: action.accessToken});
+        case LOGOUT:
+            return Object.assign({}, state, {accessToken: null});
         default:
             return state
     }

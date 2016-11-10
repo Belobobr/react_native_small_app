@@ -3,6 +3,7 @@ import Home from './Home';
 import About from './About';
 import LoginScreen from './LoginScreen';
 import MainScreen from './mainScreen/index';
+import SplashScreen from './SplashScreen';
 
 import {
     BackAndroid,
@@ -31,10 +32,12 @@ class NavRoot extends Component {
     renderScene(navigationProps) {
         const {route} = navigationProps.scene;
         switch (route.key) {
+            case 'splash':
+                return <SplashScreen {...this.props} handleNavigate={this.handleNavigate.bind(this)}/>;
             case 'login':
-                return <LoginScreen {...this.props}/>;
+                return <LoginScreen {...this.props} handleNavigate={this.handleNavigate.bind(this)}/>;
             case 'main':
-                return <MainScreen handleNavigate={this.handleNavigate.bind(this)}/>;
+                return <MainScreen {...this.props} handleNavigate={this.handleNavigate.bind(this)}/>;
             case 'home':
                 return <Home handleNavigate={this.handleNavigate.bind(this)}/>;
             case 'about':
@@ -58,6 +61,8 @@ class NavRoot extends Component {
             case 'back':
             case 'pop':
                 return this.handleBackAction();
+            case 'reset':
+                this.props.resetRoutes(action.routes, action.index);
             default:
                 return false
         }
