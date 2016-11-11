@@ -1,9 +1,14 @@
 import keyMirror from 'keymirror';
 
 module.exports = keyMirror({
-    PUSH_ROUTE: null,
-    POP_ROUTE: null,
-    RESET_ROUTES: null,
-    LOGIN: null,
-    LOGOUT: null,
+    ROUTE_PUSH: null,
+    ROUTE_POP: null,
+    ROUTE_RESET: null,
+
+    SESSION_AUTHORIZE: null,
+    SESSION_UN_AUTHORIZE: null,
+
+    PROFILE_LOADING: null,
+    PROFILE_LOADED: null,
+    PROFILE_LOADING_ERROR: null,
 });

@@ -1,4 +1,4 @@
-import {PUSH_ROUTE, POP_ROUTE, RESET_ROUTES} from './../constants/actionTypes'
+import {ROUTE_PUSH, ROUTE_POP, ROUTE_RESET} from './../constants/actionTypes'
 import {NavigationExperimental} from 'react-native'
 const {
     StateUtils: NavigationStateUtils
@@ -17,19 +17,19 @@ const initialState = {
 
 function navigationState(state = initialState, action) {
     switch (action.type) {
-        case PUSH_ROUTE:
+        case ROUTE_PUSH:
             console.log('state: ', state);
             console.log('action: ', action);
             if (state.routes[state.index].key === (action.route && action.route.key)) {
                 return state;
             }
             return NavigationStateUtils.push(state, action.route);
-        case POP_ROUTE:
+        case ROUTE_POP:
             if (state.index === 0 || state.routes.length === 1) {
                 return state;
             }
             return NavigationStateUtils.pop(state);
-        case RESET_ROUTES:
+        case ROUTE_RESET:
             return NavigationStateUtils.reset(state, action.routes, action.index);
         default:
             return state

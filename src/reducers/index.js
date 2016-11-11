@@ -1,8 +1,12 @@
 import {combineReducers} from 'redux'
-import navReducer from './navigationReducer'
+import navigation from './navigation'
+import session from './session';
+import profile from './profile';
 
 const rootReducer = combineReducers({
-    navReducer
+    navigation,
+    session,
+    profile,
 });
 
 export default rootReducer

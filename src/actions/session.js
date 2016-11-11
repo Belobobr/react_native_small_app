@@ -1,4 +1,4 @@
-import {LOGIN, LOGOUT} from './../constants/actionTypes'
+import {SESSION_AUTHORIZE, SESSION_UN_AUTHORIZE} from './../constants/actionTypes'
 import {AsyncStorage} from 'react-native';
 
 export const ACCESS_TOKEN = 'ACCESS_TOKEN';
@@ -23,7 +23,7 @@ export function authorize(accessToken, handleNavigate) {
     return (dispatch) => {
         if (accessToken != null) {
             AsyncStorage.setItem(ACCESS_TOKEN, accessToken, () => {
-                dispatch(authorized(accessToken));
+                dispatch(handleAuthorized(accessToken));
                 handleNavigate(mainRoute);
             });
         }
@@ -35,16 +35,16 @@ export function unAuthorize(handleNavigate) {
         debugger;
         AsyncStorage.setItem(ACCESS_TOKEN, '', () => {
             debugger;
-            dispatch(handleLogout());
+            dispatch(handleUnAuthorized());
             handleNavigate(unAuthorizedRoutes);
         });
     }
 }
 
-function handleLogout() {
-    return {type: LOGOUT}
+function handleUnAuthorized() {
+    return {type: SESSION_UN_AUTHORIZE}
 }
 
-function authorized(accessToken) {
-    return {type: LOGIN, accessToken}
+function handleAuthorized(accessToken) {
+    return {type: SESSION_AUTHORIZE, accessToken}
 }

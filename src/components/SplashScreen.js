@@ -5,7 +5,7 @@ import {
     View,
     Image,
     AsyncStorage,
-    ProgressBarAndroid
+    ActivityIndicator
 } from 'react-native';
 import {ACCESS_TOKEN} from './../actions/session';
 
@@ -23,7 +23,7 @@ export default class SplashScreen extends Component {
 
     render() {
         return <View style={styles.container}>
-            <ProgressBarAndroid indeterminate={true}/>
+            <ActivityIndicator indeterminate={true} size='large'/>
         </View>
     }
 }
