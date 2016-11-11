@@ -1,4 +1,4 @@
-import {PROFILE_LOADING, PROFILE_LOADING_ERROR, PROFILE_LOADED, SESSION_UN_AUTHORIZE} from './../constants/actionTypes'
+import {ITEMS_LOADING, ITEMS_LOADING_ERROR, ITEMS_LOADED, ITEMS_ADD, SESSION_UN_AUTHORIZE} from './../constants/actionTypes'
 
 const initialState = {
     data: {},
@@ -6,33 +6,38 @@ const initialState = {
     error: false,
 };
 
-function profileState(state = initialState, action) {
+function itemsState(state = initialState, action) {
     switch (action.type) {
-        case PROFILE_LOADING:
+        case ITEMS_LOADING:
             return Object.assign({}, state, {
                 loading: true,
                 error: false,
                 data: {}
             });
-        case PROFILE_LOADING_ERROR:
+        case ITEMS_LOADING_ERROR:
             return Object.assign({}, state, {
                 loading: false,
                 error: true,
                 data: {}
             });
-        case PROFILE_LOADED:
+        case ITEMS_LOADED:
             return Object.assign({}, state, {
                 loading: false,
                 error: false,
-                data: action.profile,
+                data: action.items,
+            });
+        case ITEMS_ADD:
+            debugger;
+            return Object.assign({}, state, {
+                data: state.data.concat(action.item),
             });
         case SESSION_UN_AUTHORIZE:
             return Object.assign({}, state, {
-                data: {},
+                data: {}
             });
         default:
             return state
     }
 }
 
-export default profileState
+export default itemsState

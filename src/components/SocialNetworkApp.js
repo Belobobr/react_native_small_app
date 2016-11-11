@@ -38,7 +38,7 @@ class SocialNetworkApp extends Component {
             case 'main':
                 return <MainScreen {...this.props} handleNavigate={this.handleNavigate.bind(this)}/>;
             case 'item':
-                return <ItemScreen handleNavigate={this.handleNavigate.bind(this)} handleBackAction={this.handleBackAction.bind(this)}/>;
+                return <ItemScreen {...this.props} handleNavigate={this.handleNavigate.bind(this)} handleBackAction={this.handleBackAction.bind(this)}/>;
         }
     }
 

@@ -48,7 +48,7 @@ export default class MainScreen extends Component {
                 }).bind(this)}
             >
                 <ProfileTab {...this.props} tabLabel='Profile'>My</ProfileTab>
-                <ItemsTab tabLabel='Items'>favorite</ItemsTab>
+                <ItemsTab {...this.props} tabLabel='Items'>favorite</ItemsTab>
             </ScrollableTabView>
             {this.state.floatingButtonVisible && <FloatingButton onPress={this.onCreateNewItem.bind(this)}/>}
         </View>

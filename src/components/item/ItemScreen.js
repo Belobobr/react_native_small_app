@@ -9,7 +9,6 @@ import {
 import Toolbar from './../Toolbar';
 import {CONTENT_MARGIN, HORIZONTAL_CONTENT_MARGIN} from './../../constants/dimensions';
 import Button from './../Button';
-import RealmDatabase  from './../../database/RealmDatabase';
 
 export default class ItemScreen extends Component {
 
@@ -23,8 +22,10 @@ export default class ItemScreen extends Component {
 
     render() {
         return <View style={styles.container}>
-            <Toolbar icon={require('./../../images/icon_back.png')} title="Create item"
-                     onIconClicked={this.props.handleBackAction}/>
+            <Toolbar
+                icon={require('./../../images/icon_back.png')}
+                title="Create item"
+                onIconClicked={this.props.handleBackAction}/>
             <View style={styles.itemInfoContainer}>
                 <Image
                     style={styles.image}
@@ -49,15 +50,10 @@ export default class ItemScreen extends Component {
     }
 
     onCreateItem() {
-        let realm = RealmDatabase.getInstance();
-
-        realm.write(() => {
-            let item = realm.create('Item', {
-                name: this.state.name,
-                cost: parseInt(this.state.cost),
-            });
-        });
-
+        this.props.addItem({
+            name: this.state.name,
+            cost: parseInt(this.state.cost),
+        }, this.props.handleBackAction);
     }
 }
 

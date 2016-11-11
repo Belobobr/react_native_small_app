@@ -9,24 +9,25 @@ import {
 } from 'react-native';
 import {HORIZONTAL_CONTENT_MARGIN} from './../../constants/dimensions'
 import Item from '../item/Item';
-import RealmDatabase  from './../../database/RealmDatabase';
 
 export default class ItemsTab extends Component {
 
     constructor(props) {
         super(props);
-        var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        var data = RealmDatabase.getInstance().objects('Item');
-        this.state = {
-            dataSource: ds.cloneWithRows(data),
-        };
+        this.dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    }
+
+    componentDidMount() {
+        this.props.loadItems();
     }
 
     render() {
+        const dataSource = this.dataSource.cloneWithRows(this.props.items.data);
 
         return <ListView
+            enableEmptySections={true}
             contentContainerStyle={styles.list}
-            dataSource={this.state.dataSource}
+            dataSource={dataSource}
             renderRow={(rowData) =>
                 <Item
                     style={styles.item}
@@ -40,7 +41,7 @@ export default class ItemsTab extends Component {
 
 const styles = StyleSheet.create({
     list: {
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         flexDirection: 'row',
         flexWrap: 'wrap'
     },
