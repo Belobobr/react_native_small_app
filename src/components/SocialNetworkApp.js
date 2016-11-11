@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import Home from './Home';
-import About from './About';
 import LoginScreen from './LoginScreen';
 import MainScreen from './mainScreen/index';
 import SplashScreen from './SplashScreen';
