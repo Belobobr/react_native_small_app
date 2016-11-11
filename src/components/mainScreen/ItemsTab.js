@@ -8,7 +8,7 @@ import {
     Dimensions,
 } from 'react-native';
 import {HORIZONTAL_CONTENT_MARGIN} from './../../constants/dimensions'
-import Item from './../items/Item';
+import Item from '../item/Item';
 
 export default class ItemsTab extends Component {
 

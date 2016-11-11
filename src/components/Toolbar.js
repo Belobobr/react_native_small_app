@@ -3,7 +3,8 @@ import {
     Text,
     View,
     StyleSheet,
-    Image
+    Image,
+    TouchableOpacity,
 } from 'react-native'
 import {PRIMARY_COLOR, WHITE} from './../constants/colors';
 import {ANDROID_TOOLBAR_SIZE, ICON_SIZE, HORIZONTAL_CONTENT_MARGIN} from './../constants/dimensions';
@@ -12,12 +13,14 @@ export default class Toolbar extends Component {
 
     render() {
         return <View style={styles.container}>
-            <Image
-                style={styles.icon}
-                source={require('./../images/icon_app.png')}
-            />
+            <TouchableOpacity onPress={this.props.onIconClicked}>
+                <Image
+                    style={styles.icon}
+                    source={this.props.icon}
+                />
+            </TouchableOpacity>
             <Text style={styles.title}>
-                MainScreen
+                {this.props.title}
             </Text>
         </View>
     }

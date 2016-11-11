@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {
     View,
     Image,
-    StyleSheet
+    StyleSheet,
+    TouchableOpacity,
 } from 'react-native';
 import {PRIMARY_COLOR} from './../constants/colors';
 import {CARD_ELEVATION, CONTENT_MARGIN, FLOATING_BUTTON_SIZE, ICON_SIZE} from './../constants/dimensions'
@@ -10,10 +11,12 @@ import {CARD_ELEVATION, CONTENT_MARGIN, FLOATING_BUTTON_SIZE, ICON_SIZE} from '.
 export default class FloatingButton extends Component {
     render() {
         return <View style={styles.container}>
-            <Image
-                style={styles.icon}
-                source={require('./../images/icon_plus.png')}
-            />
+            <TouchableOpacity onPress={this.props.onPress}>
+                <Image
+                    style={styles.icon}
+                    source={require('./../images/icon_plus.png')}
+                />
+            </TouchableOpacity>
         </View>;
     }
 }
@@ -34,6 +37,7 @@ const styles = StyleSheet.create({
     icon: {
         width: ICON_SIZE,
         height: ICON_SIZE,
+        margin: CONTENT_MARGIN,
     },
 });
 

@@ -30,7 +30,7 @@ export default class MainScreen extends Component {
 
     render() {
         return <View style={styles.container}>
-            <Toolbar/>
+            <Toolbar icon={require('./../../images/icon_app.png')} title="Social network application"/>
             <ScrollableTabView
                 renderTabBar={() => <DefaultTabBar style={styles.tabBar}/>}
                 tabBarTextStyle={{
@@ -50,8 +50,12 @@ export default class MainScreen extends Component {
                 <ProfileTab {...this.props} tabLabel='Profile'>My</ProfileTab>
                 <ItemsTab tabLabel='Items'>favorite</ItemsTab>
             </ScrollableTabView>
-            {this.state.floatingButtonVisible && <FloatingButton/>}
+            {this.state.floatingButtonVisible && <FloatingButton onPress={this.onCreateNewItem.bind(this)}/>}
         </View>
+    }
+
+    onCreateNewItem() {
+        this.props.handleNavigate(itemRoute);
     }
 }
 

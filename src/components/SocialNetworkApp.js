@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import LoginScreen from './LoginScreen';
 import MainScreen from './mainScreen/index';
 import SplashScreen from './SplashScreen';
+import ItemScreen from './item/ItemScreen';
 
 import {
     BackAndroid,
@@ -36,10 +37,8 @@ class NavRoot extends Component {
                 return <LoginScreen {...this.props} handleNavigate={this.handleNavigate.bind(this)}/>;
             case 'main':
                 return <MainScreen {...this.props} handleNavigate={this.handleNavigate.bind(this)}/>;
-            case 'home':
-                return <Home handleNavigate={this.handleNavigate.bind(this)}/>;
-            case 'about':
-                return <About goBack={this.handleBackAction.bind(this)}/>;
+            case 'item':
+                return <ItemScreen handleNavigate={this.handleNavigate.bind(this)} handleBackAction={this.handleBackAction.bind(this)}/>;
         }
     }
 
