@@ -14,7 +14,7 @@ export default class Toolbar extends Component {
         return <View style={styles.container}>
             <Image
                 style={styles.icon}
-                source={require('./../images/app_icon.png')}
+                source={require('./../images/icon_app.png')}
             />
             <Text style={styles.title}>
                 MainScreen

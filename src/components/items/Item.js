@@ -4,22 +4,26 @@ import {
     Text,
     View,
     Image,
-    Dimensions,
 } from 'react-native';
 import {WHITE, PRIMARY_COLOR} from './../../constants/colors';
-import {CARD_HEIGHT, CARD_WIDTH, CARD_ELEVATION, HORIZONTAL_CONTENT_MARGIN, CONTENT_MARGIN} from './../../constants/dimensions'
-
-const {width} = Dimensions.get('window');
+import {
+    CARD_HEIGHT,
+    CARD_WIDTH,
+    CARD_ELEVATION,
+    CARD_PREVIEW_IMAGE_HEIGHT,
+    HORIZONTAL_CONTENT_MARGIN,
+    CONTENT_MARGIN
+} from './../../constants/dimensions'
 
 export default class Item extends Component {
     render() {
         return <View style={[styles.item, this.props.style]}>
             <Image
-                style={styles.icon}
-                source={require('./../../images/girls.png')}
+                style={styles.image}
+                source={require('./../../images/content_girls.png')}
             />
             <Text style={styles.title}>{this.props.title}</Text>
-            <Text style={styles.cost}>{`$ ${this.props.title}`}</Text>
+            <Text style={styles.cost}>{`$ ${this.props.cost}`}</Text>
         </View>;
     }
 }
@@ -32,8 +36,8 @@ const styles = StyleSheet.create({
         elevation: CARD_ELEVATION,
     },
     image: {
-        flex: 1,
-        height: 140,
+        width: CARD_WIDTH,
+        height: CARD_PREVIEW_IMAGE_HEIGHT,
     },
     title: {
         marginLeft: HORIZONTAL_CONTENT_MARGIN,

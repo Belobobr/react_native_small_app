@@ -8,6 +8,7 @@ import ScrollableTabView, {DefaultTabBar} from 'react-native-scrollable-tab-view
 import Toolbar from '../Toolbar';
 import ProfileTab from './ProfileTab';
 import ItemsTab from './ItemsTab';
+import FloatingButton from './../FloatingButton';
 import {PRIMARY_COLOR, WHITE} from '../../constants/colors';
 
 const itemRoute = {
@@ -19,6 +20,13 @@ const itemRoute = {
 };
 
 export default class MainScreen extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            floatingButtonVisible: false,
+        }
+    }
 
     render() {
         return <View style={styles.container}>
@@ -35,10 +43,14 @@ export default class MainScreen extends Component {
                 tabBarBackgroundColor={PRIMARY_COLOR}
                 tabBarActiveTextColor={WHITE}
                 tabBarInactiveTextColor={WHITE}
+                onChangeTab={((tab) => {
+                    this.setState({floatingButtonVisible: tab.i === 1})
+                }).bind(this)}
             >
                 <ProfileTab {...this.props} tabLabel='Profile'>My</ProfileTab>
                 <ItemsTab tabLabel='Items'>favorite</ItemsTab>
             </ScrollableTabView>
+            {this.state.floatingButtonVisible && <FloatingButton/>}
         </View>
     }
 }
@@ -55,5 +67,5 @@ const styles = StyleSheet.create({
     },
     tabBar: {
         elevation: 4,
-    }
+    },
 });

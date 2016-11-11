@@ -10,28 +10,30 @@ import {
 import {HORIZONTAL_CONTENT_MARGIN} from './../../constants/dimensions'
 import Item from './../items/Item';
 
-const {width} = Dimensions.get('window');
-
 export default class ItemsTab extends Component {
 
     constructor(props) {
         super(props);
         var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        var data = Array.apply(null, {length: 20}).map(Number.call, Number);
+        var data = Array.apply(null, {length: 20}).map(() => {
+            return {title: 'Some item', cost: 300}
+        });
         this.state = {
             dataSource: ds.cloneWithRows(data),
         };
-    }
-
-    componentDidMount() {
-
     }
 
     render() {
         return <ListView
             contentContainerStyle={styles.list}
             dataSource={this.state.dataSource}
-            renderRow={(rowData) => <Item style={styles.item} title={rowData}>{rowData}</Item>}
+            renderRow={(rowData) =>
+                <Item
+                    style={styles.item}
+                    title={rowData.title}
+                    cost={rowData.cost}>{rowData}
+                </Item>
+            }
         />
     }
 }
