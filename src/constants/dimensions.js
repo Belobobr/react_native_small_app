@@ -8,3 +8,4 @@ export const CARD_WIDTH = 170;
 export const CARD_HEIGHT = 210;
 export const CARD_PREVIEW_IMAGE_HEIGHT = 140;
 export const FLOATING_BUTTON_SIZE = 56;
+export const BUTTON_HEIGHT = 48;

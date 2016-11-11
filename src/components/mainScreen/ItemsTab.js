@@ -9,28 +9,28 @@ import {
 } from 'react-native';
 import {HORIZONTAL_CONTENT_MARGIN} from './../../constants/dimensions'
 import Item from '../item/Item';
+import RealmDatabase  from './../../database/RealmDatabase';
 
 export default class ItemsTab extends Component {
 
     constructor(props) {
         super(props);
         var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-        var data = Array.apply(null, {length: 20}).map(() => {
-            return {title: 'Some item', cost: 300}
-        });
+        var data = RealmDatabase.getInstance().objects('Item');
         this.state = {
             dataSource: ds.cloneWithRows(data),
         };
     }
 
     render() {
+
         return <ListView
             contentContainerStyle={styles.list}
             dataSource={this.state.dataSource}
             renderRow={(rowData) =>
                 <Item
                     style={styles.item}
-                    title={rowData.title}
+                    name={rowData.name}
                     cost={rowData.cost}>{rowData}
                 </Item>
             }

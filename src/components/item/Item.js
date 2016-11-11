@@ -22,7 +22,7 @@ export default class Item extends Component {
                 style={styles.image}
                 source={require('./../../images/content_girls.png')}
             />
-            <Text style={styles.title}>{this.props.title}</Text>
+            <Text style={styles.name}>{this.props.name}</Text>
             <Text style={styles.cost}>{`$ ${this.props.cost}`}</Text>
         </View>;
     }
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         width: CARD_WIDTH,
         height: CARD_PREVIEW_IMAGE_HEIGHT,
     },
-    title: {
+    name: {
         marginLeft: HORIZONTAL_CONTENT_MARGIN,
         marginTop: CONTENT_MARGIN
     },

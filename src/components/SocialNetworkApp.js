@@ -13,7 +13,7 @@ const {
     CardStack: NavigationCardStack
 } = NavigationExperimental;
 
-class NavRoot extends Component {
+class SocialNetworkApp extends Component {
     constructor(props) {
         super(props);
         this.renderScene = this.renderScene.bind(this);
@@ -70,9 +70,9 @@ class NavRoot extends Component {
             <NavigationCardStack
                 navigationState={this.props.navigation}
                 onNavigate={this.handleNavigate.bind(this)}
-                renderScene={this.renderScene.bind(this)}/>
+                renderScene={this.renderScene}/>
         )
     }
 }
 
-export default NavRoot
+export default SocialNetworkApp

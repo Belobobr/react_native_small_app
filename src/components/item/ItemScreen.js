@@ -3,28 +3,61 @@ import {
     StyleSheet,
     Text,
     View,
-    Image
+    Image,
+    TextInput
 } from 'react-native';
 import Toolbar from './../Toolbar';
 import {CONTENT_MARGIN, HORIZONTAL_CONTENT_MARGIN} from './../../constants/dimensions';
+import Button from './../Button';
+import RealmDatabase  from './../../database/RealmDatabase';
 
 export default class ItemScreen extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: '',
+            cost: '',
+        }
+    }
+
     render() {
         return <View style={styles.container}>
-            <Toolbar icon={require('./../../images/icon_back.png')} title="Create item" onIconClicked={this.props.handleBackAction}/>
+            <Toolbar icon={require('./../../images/icon_back.png')} title="Create item"
+                     onIconClicked={this.props.handleBackAction}/>
             <View style={styles.itemInfoContainer}>
                 <Image
                     style={styles.image}
                     source={require('./../../images/content_girls.png')}
                 />
                 <View style={styles.itemNameContainer}>
-                    <Text style={styles.flex}>{`Name: `}</Text>
-                    <Text style={styles.flex}>{`Cost: `}</Text>
+                    <TextInput
+                        style={styles.flex}
+                        placeholder="Name"
+                        onChangeText={(name) => this.setState({name})}
+                    />
+                    <TextInput
+                        style={styles.flex}
+                        placeholder="Cost"
+                        onChangeText={(cost) => this.setState({cost})}
+                    />
                 </View>
             </View>
+            <Button style={styles.createButton} title='Create' onPress={this.onCreateItem.bind(this)}/>
             <View style={styles.flex}/>
         </View>;
+    }
+
+    onCreateItem() {
+        let realm = RealmDatabase.getInstance();
+
+        realm.write(() => {
+            let item = realm.create('Item', {
+                name: this.state.name,
+                cost: parseInt(this.state.cost),
+            });
+        });
+
     }
 }
 
@@ -39,12 +72,14 @@ const styles = StyleSheet.create({
     },
     image: {
         marginLeft: HORIZONTAL_CONTENT_MARGIN,
+        borderRadius: 45,
         width: 90,
         height: 90,
     },
     itemNameContainer: {
+        flex: 1,
         flexDirection: 'column',
-        marginLeft: HORIZONTAL_CONTENT_MARGIN,
+        marginHorizontal: HORIZONTAL_CONTENT_MARGIN,
     },
     description: {
         height: 24,
@@ -58,6 +93,10 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    createButton: {
+        marginHorizontal: HORIZONTAL_CONTENT_MARGIN,
+        marginVertical: CONTENT_MARGIN,
     }
 });
 
